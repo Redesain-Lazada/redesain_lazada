@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:redesain_lazada/desain_sistem/styles/colors.dart';
-import 'cart_pages.dart';
-import 'transaction_pages.dart';
-import 'account_pages.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

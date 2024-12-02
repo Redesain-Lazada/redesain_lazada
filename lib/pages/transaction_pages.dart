@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:redesain_lazada/desain_sistem/styles/colors.dart';
-import 'package:redesain_lazada/pages/account_pages.dart';
-import 'package:redesain_lazada/pages/cart_pages.dart';
-import 'home_pages.dart';
 
 class TransactionPages extends StatelessWidget {
   const TransactionPages({super.key});
