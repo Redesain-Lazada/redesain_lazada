@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:redesain_lazada/desain_sistem/navigation/navigation.dart';
 import 'pages/home_pages.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.poppinsTextTheme(),
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(selectedIndex: 0), // Arahkan langsung ke HomePage
+      home: Navigation(), // Arahkan langsung ke HomePage
     );
   }
 }

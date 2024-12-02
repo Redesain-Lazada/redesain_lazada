@@ -34,3 +34,44 @@ class TypographyItemHomePage {
     color: ColorsItem.secondary4,
   );
 }
+
+class TypographyItemCartPage {
+  static const TextStyle troli = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: ColorsItem.primary,
+  );
+  static const TextStyle namaProduk1 = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.bold,
+    color: ColorsItem.primary,
+  );
+  static const TextStyle namaProduk2 = TextStyle(
+    fontSize: 15,
+    color: ColorsItem.primary,
+  );
+  static const TextStyle warnaProduk = TextStyle(
+    fontSize: 14,
+    color: ColorsItem.primary,
+  );
+  static const TextStyle hargaProduk = TextStyle(
+    fontSize: 15,
+    color: ColorsItem.primary,
+  );
+  static const TextStyle jumlahProduk = TextStyle(
+    fontSize: 15,
+    color: ColorsItem.primary,
+  );
+  static const TextStyle riwayat = TextStyle(
+    fontSize: 14,
+    color: ColorsItem.primary,
+  );
+  static const TextStyle voucher = TextStyle(
+    fontSize: 14,
+    color: ColorsItem.primary,
+  );
+  static const TextStyle Lazmall = TextStyle(
+    fontSize: 15,
+    color: ColorsItem.primary,
+  );
+}
