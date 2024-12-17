@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:redesain_lazada/desain_sistem/styles/colors.dart';
-import 'package:redesain_lazada/pages/account_pages.dart';
-import 'package:redesain_lazada/pages/cart_pages.dart';
 import 'package:redesain_lazada/pages/home_pages.dart';
+import 'package:redesain_lazada/pages/cart_pages.dart';
 import 'package:redesain_lazada/pages/transaction_pages.dart';
+import 'package:redesain_lazada/pages/account_pages.dart';
+import 'package:redesain_lazada/desain_sistem/styles/colors.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -15,8 +15,8 @@ class Navigation extends StatefulWidget {
 class NavigationState extends State<Navigation> {
   int _selectedIndex = 0;
 
-  // Ubah _widgetOptions menjadi instance variable biasa
-  List<Widget> _widgetOptions = <Widget>[
+  // Daftar halaman
+  final List<Widget> _widgetOptions = <Widget>[
     HomePage(),
     CartPages(),
     TransactionPages(),

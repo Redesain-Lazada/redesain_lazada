@@ -1,201 +1,218 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Row(
-          children: [
-            IconButton(
-              icon: Icon(Icons.qr_code_scanner, color: Colors.grey),
-              onPressed: () {
-                // Aksi QR Code Scanner
-              },
-            ),
-            Expanded(
-              child: Container(
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  children: [
-                    Icon(Icons.search, color: Colors.grey),
-                    Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Cari',
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 8),
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.camera_alt, color: Colors.grey),
-                      onPressed: () {
-                        // Aksi kamera
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(width: 8),
-            ElevatedButton(
-              onPressed: () {
-                // Aksi tombol "Cari"
-              },
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                backgroundColor: Colors.orangeAccent,
-                textStyle: TextStyle(fontSize: 14),
-              ),
-              child: Text('Cari'),
-            ),
-            SizedBox(width: 8),
-            IconButton(
-              icon: Icon(Icons.wallet, color: Colors.grey),
-              onPressed: () {
-                // Aksi wallet
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.notifications_none, color: Colors.grey),
-              onPressed: () {
-                // Aksi notifikasi
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.more_horiz, color: Colors.grey),
-              onPressed: () {
-                // Aksi lainnya
-              },
-            ),
-          ],
-        ),
-      ),
+      appBar: _buildAppBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Banner Promo
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  'assets/images/Rectangle 3.png',
-                  height: 150,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-
-            // Promo Pengguna Baru
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Promo Pengguna Baru!',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            SizedBox(height: 10),
-            Container(
-              height: 140,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  PromoCard(
-                    title: 'Rp400.000',
-                    oldPrice: 'Rp500.000',
-                    imagePath: 'assets/images/Rectangle 13.png',
-                  ),
-                  PromoCard(
-                    title: 'Rp500.000',
-                    oldPrice: 'Rp600.000',
-                    imagePath: 'assets/images/Rectangle 14.png',
-                  ),
-                  PromoCard(
-                    title: 'Rp20.000\nKhusus Pengguna Baru',
-                    oldPrice: '',
-                    imagePath: 'assets/images/gift.png',
-                  ),
-                ],
-              ),
-            ),
-
-            // Mulai dari 1RB
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Mulai dari 1RB',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'Lainnya >',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              height: 200,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  ProductCard(
-                    title: 'Xiaomi Gaming Monitor',
-                    price: 'Rp400.000',
-                    imagePath: 'assets/images/Rectangle 21.png',
-                  ),
-                  ProductCard(
-                    title: 'Microphone',
-                    price: 'Rp400.000',
-                    imagePath: 'assets/images/Rectangle 22.png',
-                  ),
-                  ProductCard(
-                    title: 'PS5 Controller',
-                    price: 'Rp400.000',
-                    imagePath: 'assets/images/Rectangle 23.png',
-                  ),
-                ],
-              ),
-            ),
+            _buildPromoBanner(),
+            _buildSectionTitle('Promo Pengguna Baru!'),
+            _buildPromoList(),
+            _buildSectionWithMore('Mulai dari 1RB'),
+            _buildProductList(),
           ],
         ),
       ),
     );
   }
+
+  // AppBar
+  AppBar _buildAppBar() {
+    return AppBar(
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      elevation: 0,
+      title: Row(
+        children: [
+          IconButton(
+            icon: const Icon(Icons.qr_code_scanner),
+            onPressed: () {},
+          ),
+          Expanded(child: _buildSearchBar()),
+          _buildSmallButton('Cari', onPressed: () {}),
+          _buildIconButton(Icons.wallet, onPressed: () {}),
+          _buildIconButton(Icons.notifications_none, onPressed: () {}),
+          _buildIconButton(Icons.chat, onPressed: () {}),
+        ],
+      ),
+    );
+  }
+
+  // Search Bar
+  Widget _buildSearchBar() {
+    return Container(
+      height: 40,
+      decoration: BoxDecoration(
+        color: const Color(0xFFF2F2F2),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.search, color: Colors.black),
+          Expanded(
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Cari',
+                border: InputBorder.none,
+                contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+              ),
+            ),
+          ),
+          IconButton(
+            icon: const Icon(Icons.camera_alt, color: Colors.black),
+            onPressed: () {},
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Section Title
+  Widget _buildSectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      child: Text(
+        title,
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  // Promo Banner
+  Widget _buildPromoBanner() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image.asset(
+          'lib/desain_sistem/assets/images/banner.jpg',
+          height: 150,
+          width: double.infinity,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  // Promo List
+  Widget _buildPromoList() {
+    final promos = [
+      PromoCard(
+        title: 'Rp400.000',
+        oldPrice: 'Rp500.000',
+        imagePath: 'lib/desain_sistem/assets/images/promo_1.jpg',
+      ),
+      PromoCard(
+        title: 'Rp500.000',
+        oldPrice: 'Rp600.000',
+        imagePath: 'lib/desain_sistem/assets/images/promo_2.jpg',
+      ),
+      PromoCard(
+        title: 'Rp20.000\nKhusus Pengguna Baru',
+        oldPrice: '',
+        imagePath: 'lib/desain_sistem/assets/images/promo_3.jpg',
+      ),
+    ];
+
+    return SizedBox(
+      height: 140,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: promos.length,
+        itemBuilder: (context, index) => promos[index],
+      ),
+    );
+  }
+
+  // Product List with More Button
+  Widget _buildSectionWithMore(String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          TextButton(
+            onPressed: () {},
+            child: const Text(
+              'Lainnya >',
+              style: TextStyle(color: Color.fromARGB(255, 78, 77, 77)),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProductList() {
+    final products = [
+      ProductCard(
+        title: 'Xiaomi Gaming Monitor',
+        price: 'Rp400.000',
+        imagePath: 'lib/desain_sistem/assets/images/promo_3.jpg',
+      ),
+      ProductCard(
+        title: 'Microphone',
+        price: 'Rp400.000',
+        imagePath: 'lib/desain_sistem/assets/images/promo_4.jpg',
+      ),
+      ProductCard(
+        title: 'PS5 Controller',
+        price: 'Rp400.000',
+        imagePath: 'lib/desain_sistem/assets/images/promo_5.jpg',
+      ),
+    ];
+
+    return SizedBox(
+      height: 200,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: products.length,
+        itemBuilder: (context, index) => products[index],
+      ),
+    );
+  }
+
+  // Reusable Buttons
+  Widget _buildSmallButton(String text, {required VoidCallback onPressed}) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromARGB(255, 239, 238, 248),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      ),
+      child: Text(
+        text,
+        style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+      ),
+    );
+  }
+
+  Widget _buildIconButton(IconData icon, {required VoidCallback onPressed}) {
+    return IconButton(
+      icon: Icon(icon, color: const Color.fromARGB(255, 0, 0, 0)),
+      onPressed: onPressed,
+    );
+  }
 }
 
-// Widget PromoCard
+// PromoCard
 class PromoCard extends StatelessWidget {
   final String title;
   final String oldPrice;
   final String imagePath;
 
   const PromoCard({
+    super.key,
     required this.title,
     required this.oldPrice,
     required this.imagePath,
@@ -204,51 +221,49 @@ class PromoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 16),
+      margin: const EdgeInsets.only(left: 16),
       width: 120,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 80,
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          SizedBox(height: 8),
-          Text(
-            title,
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-          ),
+          _buildImage(),
+          const SizedBox(height: 8),
+          Text(title, style: const TextStyle(fontSize: 14)),
           if (oldPrice.isNotEmpty)
             Text(
               oldPrice,
-              style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.red,
-                  decoration: TextDecoration.lineThrough),
+              style: const TextStyle(
+                fontSize: 12,
+                color: Colors.grey,
+                decoration: TextDecoration.lineThrough,
+              ),
             ),
         ],
       ),
     );
   }
+
+  Widget _buildImage() {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Image.asset(
+        imagePath,
+        height: 80,
+        width: double.infinity,
+        fit: BoxFit.cover,
+      ),
+    );
+  }
 }
 
-// Widget ProductCard
+// ProductCard
 class ProductCard extends StatelessWidget {
   final String title;
   final String price;
   final String imagePath;
 
   const ProductCard({
+    super.key,
     required this.title,
     required this.price,
     required this.imagePath,
@@ -257,32 +272,34 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 16),
+      margin: const EdgeInsets.only(left: 16),
       width: 140,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 100,
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          SizedBox(height: 8),
+          _buildImage(),
+          const SizedBox(height: 8),
+          Text(title, style: const TextStyle(fontSize: 14)),
           Text(
-            title,
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            price,
+            style: const TextStyle(
+              fontSize: 14,
+              color: Color(0xFF6C63FF),
+            ),
           ),
-          Text(price, style: TextStyle(fontSize: 14, color: Colors.green)),
         ],
+      ),
+    );
+  }
+
+  Widget _buildImage() {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Image.asset(
+        imagePath,
+        height: 100,
+        width: double.infinity,
+        fit: BoxFit.cover,
       ),
     );
   }
