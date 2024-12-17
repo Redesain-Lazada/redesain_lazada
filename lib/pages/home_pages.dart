@@ -105,22 +105,22 @@ class HomePage extends StatelessWidget {
       PromoCard(
         title: 'Rp400.000',
         oldPrice: 'Rp500.000',
-        imagePath: 'lib/desain_sistem/assets/images/promo_1.jpg',
+        imagePath: 'lib/desain_sistem/assets/images/promo_1.png',
       ),
       PromoCard(
         title: 'Rp500.000',
         oldPrice: 'Rp600.000',
-        imagePath: 'lib/desain_sistem/assets/images/promo_2.jpg',
+        imagePath: 'lib/desain_sistem/assets/images/promo_2.png',
       ),
       PromoCard(
         title: 'Rp20.000\nKhusus Pengguna Baru',
         oldPrice: '',
-        imagePath: 'lib/desain_sistem/assets/images/promo_3.jpg',
+        imagePath: 'lib/desain_sistem/assets/images/promo_3.png',
       ),
     ];
 
     return SizedBox(
-      height: 140,
+      height: 160,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: promos.length,
@@ -157,17 +157,17 @@ class HomePage extends StatelessWidget {
       ProductCard(
         title: 'Xiaomi Gaming Monitor',
         price: 'Rp400.000',
-        imagePath: 'lib/desain_sistem/assets/images/promo_3.jpg',
+        imagePath: 'lib/desain_sistem/assets/images/promo_3.png',
       ),
       ProductCard(
         title: 'Microphone',
         price: 'Rp400.000',
-        imagePath: 'lib/desain_sistem/assets/images/promo_4.jpg',
+        imagePath: 'lib/desain_sistem/assets/images/promo_4.png',
       ),
       ProductCard(
         title: 'PS5 Controller',
         price: 'Rp400.000',
-        imagePath: 'lib/desain_sistem/assets/images/promo_5.jpg',
+        imagePath: 'lib/desain_sistem/assets/images/promo_5.png',
       ),
     ];
 
@@ -284,7 +284,7 @@ class ProductCard extends StatelessWidget {
             price,
             style: const TextStyle(
               fontSize: 14,
-              color: Color(0xFF6C63FF),
+              color: Colors.black,
             ),
           ),
         ],
