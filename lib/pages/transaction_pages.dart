@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:redesain_lazada/desain_sistem/styles/colors.dart';
 
 class TransactionPages extends StatelessWidget {
   const TransactionPages({super.key});
@@ -146,7 +147,7 @@ class TransactionItemWidget extends StatelessWidget {
                         transactionItem.date,
                         style: const TextStyle(
                           fontSize: 12,
-                          color: Colors.grey,
+                          color: ColorsItem.primary,
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -163,7 +164,7 @@ class TransactionItemWidget extends StatelessWidget {
                         'Total Belanja: Rp${transactionItem.totalPrice}',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: ColorsItem.primary,
                         ),
                       ),
                     ],
@@ -174,7 +175,7 @@ class TransactionItemWidget extends StatelessWidget {
                     // Logika tombol "Selesai"
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    backgroundColor: ColorsItem.secondary1,
                   ),
                   child: const Text('Selesai'),
                 ),
@@ -188,7 +189,7 @@ class TransactionItemWidget extends StatelessWidget {
                   index < transactionItem.rating
                       ? Icons.star
                       : Icons.star_border,
-                  color: Colors.amber,
+                  color: ColorsItem.secondary2,
                   size: 20,
                 ),
               ),
@@ -200,6 +201,9 @@ class TransactionItemWidget extends StatelessWidget {
                 onPressed: () {
                   // Logika tombol "Beli Lagi"
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: ColorsItem.secondary1,
+                ),
                 child: const Text('Beli Lagi'),
               ),
             ),

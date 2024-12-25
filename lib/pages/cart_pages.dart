@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:redesain_lazada/desain_sistem/styles/colors.dart';
+import 'package:redesain_lazada/desain_sistem/styles/typography.dart';
 
 class CartPages extends StatelessWidget {
   CartPages({super.key});
@@ -11,15 +13,15 @@ class CartPages extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: false,
         elevation: 1,
-        leading: const Icon(Icons.arrow_back, color: Colors.black),
+        leading: const Icon(Icons.arrow_back, color: ColorsItem.primary),
         actions: const [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Icon(Icons.search, color: Colors.black),
+            child: Icon(Icons.search, color: ColorsItem.primary),
           ),
           Padding(
             padding: EdgeInsets.only(right: 16),
-            child: Icon(Icons.delete, color: Colors.red),
+            child: Icon(Icons.delete, color: ColorsItem.secondary3),
           ),
         ],
       ),
@@ -27,7 +29,7 @@ class CartPages extends StatelessWidget {
         child: Column(
           children: [
             _buildCartItem(), // Item di keranjang
-            const Divider(thickness: 6, color: Colors.grey),
+            const Divider(thickness: 6, color: ColorsItem.primary2),
             _buildCenteredHistory(), // Lihat Riwayat di Tengah
             const SizedBox(height: 10),
             _buildVoucherSection(), // Input Voucher
@@ -50,12 +52,12 @@ class CartPages extends StatelessWidget {
             children: const [
               Chip(
                 label: Text('LazMall'),
-                backgroundColor: Colors.red,
+                backgroundColor: ColorsItem.secondary3,
                 labelStyle: TextStyle(color: Colors.white),
                 visualDensity: VisualDensity(horizontal: -2, vertical: -2),
               ),
               SizedBox(width: 5),
-              Text('Xiaomi', style: TextStyle(fontWeight: FontWeight.bold)),
+              Text('Xiaomi', style: TypographyItems.h4),
             ],
           ),
           const SizedBox(height: 8), // Memberi jarak ke bawah LazMall
@@ -80,12 +82,11 @@ class CartPages extends StatelessWidget {
                       'Xiaomi Gaming Monitor G27i Panel IPS 165Hz 1ms FHD Gaming',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                      style: TypographyItems.p4,
                     ),
                     const SizedBox(height: 8),
                     const Text(
-                      'Hitam v',
+                      'Hitam ',
                       style: TextStyle(color: Colors.black87, fontSize: 12),
                     ),
                     const SizedBox(height: 8),
@@ -102,7 +103,8 @@ class CartPages extends StatelessWidget {
                             ),
                             Text(
                               'Rp1.900.000 Harga Diskon',
-                              style: TextStyle(color: Colors.red, fontSize: 12),
+                              style: TextStyle(
+                                  color: ColorsItem.secondary3, fontSize: 12),
                             ),
                           ],
                         ),
@@ -129,16 +131,20 @@ class CartPages extends StatelessWidget {
   }
 
   Widget _buildQuantityButton(IconData icon) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(4),
-      ),
-      child: IconButton(
-        onPressed: () {},
-        icon: Icon(icon, size: 18),
-        padding: EdgeInsets.zero,
-        constraints: const BoxConstraints(),
+    return SizedBox(
+      width: 32, // Ukuran tetap untuk lebar tombol
+      height: 32, // Ukuran tetap untuk tinggi tombol
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey),
+          borderRadius: BorderRadius.circular(4),
+        ),
+        child: IconButton(
+          onPressed: () {},
+          icon: Icon(icon, size: 18),
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints(),
+        ),
       ),
     );
   }
@@ -227,7 +233,7 @@ class CartPages extends StatelessWidget {
                     children: [
                       const Chip(
                         label: Text('LazMall'),
-                        backgroundColor: Colors.red,
+                        backgroundColor: ColorsItem.secondary3,
                         labelStyle: TextStyle(color: Colors.white),
                         visualDensity:
                             VisualDensity(horizontal: -2, vertical: -2),
@@ -238,7 +244,8 @@ class CartPages extends StatelessWidget {
                       const SizedBox(height: 4),
                       Row(
                         children: [
-                          const Icon(Icons.star, color: Colors.amber, size: 16),
+                          const Icon(Icons.star,
+                              color: ColorsItem.secondary2, size: 16),
                           Text('4.9 ($rating) $sold Terjual',
                               style: const TextStyle(fontSize: 10)),
                         ],
@@ -253,7 +260,7 @@ class CartPages extends StatelessWidget {
               right: 8,
               child: Container(
                 decoration: const BoxDecoration(
-                  color: Colors.red,
+                  color: ColorsItem.secondary3,
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(Icons.add, color: Colors.white),
