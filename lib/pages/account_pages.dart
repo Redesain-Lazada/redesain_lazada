@@ -7,6 +7,8 @@ class AccountPages extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        constraints: BoxConstraints
+            .expand(), 
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -123,114 +125,112 @@ class AccountPages extends StatelessWidget {
     );
   }
 
-  // Order and Wallet sections remain the same
-}
+  Widget _buildOrderSection() {
+    return Container(
+      padding: EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "My Order",
+            style: TypographyItems.p2,
+          ),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildOrderItem(Icons.wallet, "Pembayaran"),
+              _buildOrderItem(Icons.local_shipping, "Pengiriman"),
+              _buildOrderItem(Icons.assignment_return, "Pengembalian"),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 
-Widget _buildOrderSection() {
-  return Container(
-    padding: EdgeInsets.all(24),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(12),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.1),
-          blurRadius: 8,
-          offset: Offset(0, 4),
+  Widget _buildOrderItem(IconData icon, String label) {
+    return Column(
+      children: [
+        Icon(icon, size: 40, color: ColorsItem.primary),
+        SizedBox(height: 8),
+        Text(
+          label,
+          style: TypographyItems.p4,
         ),
       ],
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    );
+  }
+
+  Widget _buildWalletSection() {
+    return Container(
+      padding: EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Lazada Wallet",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.grey[600],
+            ),
+          ),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildWalletItem("0.00", "THB", "Top-Up"),
+              _buildWalletItem("2", "Payment", "Options"),
+              _buildWalletItem("", "Transaction", "History"),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildWalletItem(String balance, String currency, String label) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "My Order",
+          balance,
           style: TypographyItems.p2,
         ),
-        SizedBox(height: 20),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _buildOrderItem(Icons.wallet, "Pembayaran"),
-            _buildOrderItem(Icons.local_shipping, "Pengiriman"),
-            _buildOrderItem(Icons.assignment_return, "Pengembalian"),
-          ],
-        ),
-      ],
-    ),
-  );
-}
-
-Widget _buildOrderItem(IconData icon, String label) {
-  return Column(
-    children: [
-      Icon(icon, size: 40, color: ColorsItem.primary),
-      SizedBox(height: 8),
-      Text(
-        label,
-        style: TypographyItems.p4,
-      ),
-    ],
-  );
-}
-
-Widget _buildWalletSection() {
-  return Container(
-    padding: EdgeInsets.all(24),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(12),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.1),
-          blurRadius: 8,
-          offset: Offset(0, 4),
-        ),
-      ],
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+        SizedBox(height: 6),
         Text(
-          "Lazada Wallet",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey[600],
-          ),
+          currency,
+          style: TypographyItems.p3,
         ),
-        SizedBox(height: 20),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _buildWalletItem("0.00", "THB", "Top-Up"),
-            _buildWalletItem("2", "Payment", "Options"),
-            _buildWalletItem("", "Transaction", "History"),
-          ],
+        SizedBox(height: 6),
+        Text(
+          label,
+          style: TypographyItems.p4,
         ),
       ],
-    ),
-  );
-}
-
-Widget _buildWalletItem(String balance, String currency, String label) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Text(
-        balance,
-        style: TypographyItems.p2,
-      ),
-      SizedBox(height: 6),
-      Text(
-        currency,
-        style: TypographyItems.p3,
-      ),
-      SizedBox(height: 6),
-      Text(
-        label,
-        style: TypographyItems.p4,
-      ),
-    ],
-  );
+    );
+  }
 }
