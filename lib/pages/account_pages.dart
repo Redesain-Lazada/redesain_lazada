@@ -7,8 +7,7 @@ class AccountPages extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        constraints: BoxConstraints
-            .expand(), 
+        constraints: BoxConstraints.expand(),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -25,9 +24,10 @@ class AccountPages extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: 30),
                 // Profil
                 _buildProfileSection(),
-                const SizedBox(height: 40),
+                const SizedBox(height: 50),
                 // Menu Grid
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -38,10 +38,10 @@ class AccountPages extends StatelessWidget {
                     _buildMenuItem(Icons.card_giftcard, "Voucher"),
                   ],
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 50),
                 // Order Section
                 _buildOrderSection(),
-                const SizedBox(height: 30),
+                const SizedBox(height: 50),
                 // Wallet Section
                 _buildWalletSection(),
               ],
